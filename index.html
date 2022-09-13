@@ -1,4 +1,4 @@
-<table border="0" cellpadding="0" cellspacing="0" width="100%" style = "border-collapse: collapse;">
+<table id="table" border="0" cellpadding="0" cellspacing="0" width="100%" style = "border-collapse: collapse;">
     <tbody>
         <tr>
             <!-- logo -->
@@ -33,3 +33,33 @@
         </tr>
     </tbody>
 </table>
+
+
+<script>
+function myFunction() {
+
+    node = document.getElementById("table");
+    if (document.body.createTextRange) {
+        const range = document.body.createTextRange();
+        range.moveToElementText(node);
+        range.select();
+        document.execCommand('copy');
+        alert('Signature Copied to clipboard');
+    } else if (window.getSelection) {
+        const selection = window.getSelection();
+        const range = document.createRange();
+        range.selectNodeContents(node);
+        selection.removeAllRanges();
+        selection.addRange(range);
+        document.execCommand('copy');
+        alert('Signature Copied to clipboard');
+    } else {
+        alert('Unable to copy signature');
+    }
+}
+</script>
+
+<button onclick="myFunction()">Copy</button>
+
+<br>
+<a href="#">View HTML</a>
